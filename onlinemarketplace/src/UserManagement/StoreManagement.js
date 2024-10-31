@@ -16,8 +16,10 @@ function StoreManagement() {
         locationFrom: '',
         locationTo: '',
         seller: '',
+        sellerId: '',
         status: '',
-        condition: ''
+        condition: '',
+        review: []
     }
     const [item, setItem] = useState(initialState);
 
@@ -76,6 +78,8 @@ function StoreManagement() {
     const handleAddNewItem = async () => {
         const newItem = item;
         newItem.itemId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // make sure to put user id into selling items.
+        newItem.sellerId = userid;
         console.log(newItem);
         const newItems = [...(items || []), newItem];
         console.log(newItems);

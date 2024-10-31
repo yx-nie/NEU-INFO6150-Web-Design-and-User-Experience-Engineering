@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function HomeItemListing() {
+    const navigate = useNavigate();
     const { isAuthenticated, userid } = useSelector((state) => state.auth);
     const [items, setItems] = useState([]);
     const [item, setItem] = useState({
@@ -16,8 +18,10 @@ function HomeItemListing() {
         locationFrom: '',
         locationTo: '',
         seller: '',
+        sellerId: '',
         status: '',
-        condition: ''
+        condition: '',
+        review:[]
     });
 
     const [composedItems, setComposedItems] = useState([]);
@@ -66,6 +70,7 @@ function HomeItemListing() {
 
     const onSelect = (item, userId) => {
         setItem(item);
+        navigate('/order', { state: { item, userId } });
     }
 
     

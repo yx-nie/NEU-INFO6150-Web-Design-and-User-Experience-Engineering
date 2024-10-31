@@ -12,6 +12,8 @@ import StoreManagement from './UserManagement/StoreManagement';
 import UserManagement from './AdminManagement/UserMangement';
 import ItemsManagement from './AdminManagement/ItemsManagement';
 import HomeItemListing from './Home/HomeItemListing';
+import Review from './UserManagement/review';
+import Order from './Home/Order';
 import { Provider, useSelector } from 'react-redux';
 import store from './store';
 
@@ -32,6 +34,8 @@ function App() {
           <Route exact path='/storemanagement' element={<StoreManagement />} />
           <Route exact path='/usermanagement' element={<UserManagement />} />
           <Route exact path='/itemsmanagement' element={<ItemsManagement />} />
+          <Route exact path='/order' element={<Order />} />
+          <Route exact path='/review' element={<Review />} />
           <Route exact path='/' element={<HomeItemListing />} />
         </Routes>
         </Provider>

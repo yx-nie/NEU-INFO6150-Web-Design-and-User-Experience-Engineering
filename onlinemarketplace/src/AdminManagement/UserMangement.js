@@ -8,8 +8,8 @@ function UserManagement() {
         email: '',
         password: '',
         location: '',
-        selllist: {},
-        buylist: {}
+        selllist: [],
+        buylist: []
     });
 
     const [users, setUsers] = useState([]);

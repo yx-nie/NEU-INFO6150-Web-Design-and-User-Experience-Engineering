@@ -11,7 +11,7 @@ export default function Navbar() {
         <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">Market Place</a>
+            <Link className="btn btn-outline-light" to="/">Market Place</Link>
                 {!isAuthenticated && <Link className="btn btn-outline-light" to="/registeruser">Register</Link>}
                 {!isAuthenticated && <Link className="btn btn-outline-light" to="/login">Login</Link>}
                 {isAuthenticated && <Link className="btn btn-outline-light" to="/userprofile">Profile</Link>}

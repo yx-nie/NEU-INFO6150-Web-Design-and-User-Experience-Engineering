@@ -12,8 +12,8 @@ function UserProfile() {
             email: '',
             password: '',
             location: '',
-            selllist: {},
-            buylist: {}
+            selllist: [],
+            buylist: [],
 
         });
 

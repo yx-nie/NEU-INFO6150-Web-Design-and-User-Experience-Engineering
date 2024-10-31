@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function PurchaseHistory() {
+    const navigate = useNavigate();
     const [item, setItem] = useState({
         itemId: '',
         name: '',
@@ -14,8 +16,10 @@ function PurchaseHistory() {
         locationFrom: '',
         locationTo: '',
         seller: '',
+        sellerId: '',
         status: '',
-        condition: ''
+        condition: '',
+        review: []
     });
     const [items, setItems] = useState([]);
     const { isAuthenticated, userid } = useSelector((state) => state.auth);
@@ -67,6 +71,10 @@ function PurchaseHistory() {
         }
     };
 
+    const AddReview = async (item) => {
+        navigate('/review', { state: { item} });
+    }
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
@@ -74,15 +82,26 @@ function PurchaseHistory() {
                 <ItemDetails item={item} setItem={setItem} />
                 <button
                     style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
-                    onClick={handleDeleteItem}
+                    onClick={() => handleDeleteItem}
                 >
                     Delete
-                </button>    
+                </button>
+                <button
+                    style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                    onClick={() => AddReview(item)}
+                >
+                    Add Review
+                </button>
+
             </div>
+
+
             <ItemList items={items} onSelect={setItem} />
         </div>
     )
 }
+
+
 
 const ItemList = ({items, onSelect}) => {
     

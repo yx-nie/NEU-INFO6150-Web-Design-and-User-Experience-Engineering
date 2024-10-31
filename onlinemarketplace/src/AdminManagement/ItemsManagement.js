@@ -15,8 +15,10 @@ function ItemsManagement() {
         locationFrom: '',
         locationTo: '',
         seller: '',
+        sellerId: '',
         status: '',
-        condition: ''
+        condition: '',
+        review: []
     });
     const [userId, setUserId] = useState('');
     //const [itemId, setItemId] = useState('');
