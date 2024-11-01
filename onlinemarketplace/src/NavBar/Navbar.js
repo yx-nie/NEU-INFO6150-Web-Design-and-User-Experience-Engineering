@@ -18,59 +18,39 @@ export default function Navbar() {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <Link className="navbar-brand" to="/">🎁 Market Place</Link>
+                        <Link className="navbar-brand" to="/"> 🎁 Market Place</Link>
                     </div>
 
                     <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                        {!isAuthenticated && <Link className="nav-link active" to="/registeruser">Register</Link>}
+                            {!isAuthenticated && <Link className="nav-link active" to="/registeruser">Register</Link>}
                         </li>
                         <li>
-
-                        
-                        {!isAuthenticated && <Link className="nav-link active" to="/login">Login</Link>}
+                            {!isAuthenticated && <Link className="nav-link active" to="/login">Login</Link>}
                         </li>
                         <li>
-                {isAuthenticated && <Link className="nav-link active" to="/userprofile">Profile</Link>}
-                </li>
-                <li>
-                {isAuthenticated && <Link  className='nav-link active' to="/purchasehistory">Manage Purchase History</Link>}
-                </li>
-                <li>
-                {isAuthenticated && <Link  className='nav-link active' to="/storemanagement">Manage Your Store</Link>}
-                </li>
-                <li>
-                {isAuthenticated && isAdmin && <Link className="nav-link active" to="/usermanagement">User Management</Link>}
-                </li>
-                <li>
-                {isAuthenticated && isAdmin && <Link className="nav-link active" to="/itemsmanagement">Items Management</Link>}
-                </li>
-                <li>
-                {isAuthenticated && <Link className="nav-link active" to="/userlogout">Logout</Link>}
-                </li>
-
+                            {isAuthenticated && <Link className="nav-link active" to="/userprofile">Profile</Link>}
+                        </li>
+                        <li>
+                            {isAuthenticated && <Link  className='nav-link active' to="/purchasehistory">Manage Purchase History</Link>}
+                        </li>
+                        <li>
+                            {isAuthenticated && <Link  className='nav-link active' to="/storemanagement">Manage Your Store</Link>}
+                        </li>
+                        <li>
+                            {isAuthenticated && isAdmin && <Link className="nav-link active" to="/usermanagement">User Management</Link>}
+                        </li>
+                        <li>
+                            {isAuthenticated && isAdmin && <Link className="nav-link active" to="/itemsmanagement">Items Management</Link>}
+                        </li>
+                        <li>
+                            {isAuthenticated && <Link className="nav-link active" to="/userlogout">Logout</Link>}
+                        </li>
                     </ul>   
                     </div>
-
-
-
-
-        {/* <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container-fluid">
-                <Link className="btn btn-outline-light" to="/">Market Place</Link>
-                {!isAuthenticated && <Link className="nav-link active" to="/registeruser">Register</Link>}
-                {!isAuthenticated && <Link className="nav-link active" to="/login">Login</Link>}
-                {isAuthenticated && <Link className="nav-link active" to="/userprofile">Profile</Link>}
-                {isAuthenticated && <Link  className='nav-link active' to="/purchasehistory">Manage Purchase History</Link>}
-                {isAuthenticated && <Link  className='nav-link active' to="/storemanagement">Manage Your Store</Link>}
-                {isAuthenticated && isAdmin && <Link className="nav-link active" to="/usermanagement">User Management</Link>}
-                {isAuthenticated && isAdmin && <Link className="nav-link active" to="/itemsmanagement">Items Management</Link>}
-                {isAuthenticated && <Link className="nav-link active" to="/userlogout">Logout</Link>}
+                </div>
             </div>
-        </nav> */}
-    </div>
-</div>
             </div>
         </div>
     )
