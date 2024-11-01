@@ -30,6 +30,9 @@ function HomeItemListing() {
         item: {}
     })
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const [displayedItems, setDisplayedItems] = useState([]);
+
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -64,6 +67,7 @@ function HomeItemListing() {
                 }
             }
             setComposedItems(allComposedItems);
+            setDisplayedItems(allComposedItems);
             console.log(allComposedItems);
         }
     };
@@ -73,10 +77,41 @@ function HomeItemListing() {
         navigate('/order', { state: { item, userId } });
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearchQuery(e.target.value);   
+    }
+
+    useEffect(() => {
+        if (searchQuery === '') {
+            setDisplayedItems(composedItems);
+        } else {
+            const filteredItems = composedItems.filter(item => item.item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+            setDisplayedItems(filteredItems);
+        }
+        
+    }, [searchQuery, composedItems]);
+
     
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
-            <ItemList composedItems={composedItems} onSelect={onSelect} isAuthenticated={isAuthenticated} />
+        <div style={{ padding: '60px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h1>Item Listings</h1>
+                <input
+                    type="text"
+                    placeholder="Search items..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    style={{
+                        padding: '10px',
+                        borderRadius: '5px',
+                        border: '1px solid #ccc',
+                        width: '300px',
+                        marginRight: '20px',
+                    }}
+                />
+            </div>
+            <ItemList composedItems={displayedItems} onSelect={onSelect} isAuthenticated={isAuthenticated} />
         </div>
     );
 }
@@ -86,7 +121,7 @@ const ItemList = ({composedItems, onSelect, isAuthenticated}) => {
     
     return (
         <div style={{ flex: 1, padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
-            <h2>Item List</h2>
+            {/* <h2>Item List</h2> */}
             <ul style={{ 
                     display: 'grid', 
                     gridTemplateColumns: 'repeat(3, 1fr)',

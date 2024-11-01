@@ -27,6 +27,9 @@ function ItemsManagement() {
         item: {}
     });
     const [composedItems, setComposedItems] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const [displayedItems, setDisplayedItems] = useState([]);
 
 
     const onSelect = (item, userId) => {
@@ -66,6 +69,7 @@ function ItemsManagement() {
                 }
             }
             setComposedItems(allComposedItems);
+            setDisplayedItems(allComposedItems);
             console.log(allComposedItems);
         }   
     }
@@ -113,9 +117,44 @@ function ItemsManagement() {
         }
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearchQuery(e.target.value);    
+    }
+
+    useEffect(() => {
+        if (searchQuery === '') {
+            setDisplayedItems(composedItems);
+        } else {
+            const filteredItems = composedItems.filter(item => item.item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+            setDisplayedItems(filteredItems);
+        }
+
+        
+    }, [searchQuery, composedItems]);
+
 
     return (
+        <div style={{ padding: '60px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h1>Item Listings</h1>
+                <input
+                    type="text"
+                    placeholder="Search items..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    style={{
+                        padding: '10px',
+                        borderRadius: '5px',
+                        border: '1px solid #ccc',
+                        width: '300px',
+                        marginRight: '20px',
+                    }}
+                />
+            </div>
+        
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
+            
             <div>
                 <ItemDetails item={item} setItem={setItem} setUserId={setUserId}/>
                 <button
@@ -132,7 +171,9 @@ function ItemsManagement() {
                 </button>
                 
             </div>
-            <ItemList composedItems={composedItems} onSelect={onSelect} />
+            <ItemList composedItems={displayedItems} onSelect={onSelect} />
+        </div>
+
         </div>
     );
 }

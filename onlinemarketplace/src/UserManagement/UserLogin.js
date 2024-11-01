@@ -39,13 +39,13 @@ function UserLogin() {
                         <h2 className='form-heading'>Login</h2>
                         <div className='form-group'>
                             <label htmlFor="username" className='form-label'>Username</label>
-                            <input type={"text"} className='form-control' autofocus = "true"
+                            <input type={"text"} className='form-control' autoFocus = {true}
                             placeholder='Enter your name' name='username' value={username} required
                             onChange={(e)=>onInputChange(e)}></input>
                         </div>
                         <div className='form-group'>
                             <label htmlFor="password" className='form-label'>Password</label>
-                            <input type={"password"} className='form-control' autofocus = "true"
+                            <input type={"password"} className='form-control' autoFocus = {true}
                             placeholder='Enter your password' name='password' value={password} required
                             onChange={(e)=>onInputChange(e)}></input>
                         </div>
