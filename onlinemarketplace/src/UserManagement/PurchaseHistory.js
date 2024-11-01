@@ -81,18 +81,17 @@ function PurchaseHistory() {
             <div>
                 <ItemDetails item={item} setItem={setItem} />
                 <button
+                    style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                    onClick={() => AddReview(item)}
+                >
+                    Add Review
+                </button>
+                <button
                     style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
                     onClick={() => handleDeleteItem}
                 >
                     Delete
                 </button>
-                <button
-                    style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
-                    onClick={() => AddReview(item)}
-                >
-                    Add Review
-                </button>
-
             </div>
 
 

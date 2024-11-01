@@ -119,17 +119,18 @@ function ItemsManagement() {
             <div>
                 <ItemDetails item={item} setItem={setItem} setUserId={setUserId}/>
                 <button
+                    style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                    onClick={() => onSave(item, userId)}
+                >
+                    Update
+                </button>
+                <button
                     style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
                     onClick={() => onDelete(item, userId)}
                 >
                     Delete
                 </button>
-                <button
-                    style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
-                    onClick={() => onSave(item, userId)}
-                >
-                    Update
-                </button>
+                
             </div>
             <ItemList composedItems={composedItems} onSelect={onSelect} />
         </div>

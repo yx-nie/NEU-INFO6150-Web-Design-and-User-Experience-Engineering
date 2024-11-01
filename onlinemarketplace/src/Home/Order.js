@@ -108,10 +108,10 @@ function Order() {
                         <p>Seller: {item.seller}</p>
                         <p>Status: {item.status}</p>
                         <p>Condition: {item.condition}</p>
-                        <button onClick={() => onConfirm()}>
+                        <button style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} onClick={() => onConfirm()}>
                            Confirm
                         </button>
-                        <button onClick={() => oncancel()}>
+                        <button style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} onClick={() => oncancel()}>
                             Cancel
                         </button>
                     </>

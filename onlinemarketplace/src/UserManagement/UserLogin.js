@@ -31,31 +31,31 @@ function UserLogin() {
     }
 
     return (
-    <div className='container'>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div className='row'>
-            <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-                <h2 className='text-center m-4'>Login</h2>
-                <form onSubmit={(e)=>handleSubmit(e)}>
-                    <div className='mb-3'>
-                        <label htmlFor="username" className='form-label'>Username</label>
-                        <input type={"text"} className='form-control' 
-                        placeholder='Enter your name' name='username' value={username}
-                        onChange={(e)=>onInputChange(e)}></input>
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="password" className='form-label'>Password</label>
-                        <input type={"password"} className='form-control' 
-                        placeholder='Enter your password' name='password' value={password}
-                        onChange={(e)=>onInputChange(e)}></input>
-                    </div>
-                    <button type="submit" className='btn btn-primary'>Login</button>
-                    <Link  className='btn btn-danger mx-2' to="/">Cancel</Link>
-                    <Link  className='btn btn-danger mx-2' to="/">Forget password ?</Link>
-                </form>
-            </div>
+        <div className="wrap">
+            <main id="content" role='main' className='container'>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+                <div className='form-wrapper'>
+                    <form onSubmit={(e)=>handleSubmit(e)}>
+                        <h2 className='form-heading'>Login</h2>
+                        <div className='form-group'>
+                            <label htmlFor="username" className='form-label'>Username</label>
+                            <input type={"text"} className='form-control' autofocus = "true"
+                            placeholder='Enter your name' name='username' value={username} required
+                            onChange={(e)=>onInputChange(e)}></input>
+                        </div>
+                        <div className='form-group'>
+                            <label htmlFor="password" className='form-label'>Password</label>
+                            <input type={"password"} className='form-control' autofocus = "true"
+                            placeholder='Enter your password' name='password' value={password} required
+                            onChange={(e)=>onInputChange(e)}></input>
+                        </div>
+                        <button type="submit" className='btn btn-primary'>Login</button>
+                        <Link  className='btn btn-danger' to="/">Cancel</Link>
+                        <Link  className='btn btn-danger' to="/">Forget password ?</Link>
+                    </form>
+                </div>
+            </main>
         </div>
-    </div>
         
     );
 };

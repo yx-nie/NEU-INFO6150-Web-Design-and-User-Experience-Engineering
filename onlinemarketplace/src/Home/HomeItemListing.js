@@ -122,7 +122,8 @@ const ItemList = ({composedItems, onSelect, isAuthenticated}) => {
                         <p style={{ margin: '5px 0' }}>Status: {composedItem.item.status}</p>
                         <p style={{ margin: '5px 0' }}>Condition: {composedItem.item.condition}</p>
                         <div>
-                            {isAuthenticated && <button style={{ marginTop: '10px' }} onClick={() => onSelect(composedItem.item, composedItem.userId)}>Order</button>}
+                            {isAuthenticated && <button style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                            onClick={() => onSelect(composedItem.item, composedItem.userId)}>Order</button>}
                         </div>
                     </div>
                     ))}

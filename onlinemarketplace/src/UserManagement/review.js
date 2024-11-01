@@ -94,7 +94,7 @@ function Review() {
                 <h2>Item Review</h2>
                 <form 
                     style={{ padding: '15px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}
-                    onSubmit={SubmitReview}// Use form onSubmit instead of button click
+                    onSubmit={SubmitReview}
                 >
                     <label>
                         Rating:
@@ -110,8 +110,8 @@ function Review() {
                         Comment:
                         <input type="text" value={review.comment} onChange={handleCommentChange} />
                     </label>
-                    <button type="submit">Submit</button>
-                    <button type="button" onClick={CancelReview}>Cancel</button>
+                    <button type="submit" style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} >Submit</button>
+                    <button type="button" style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} onClick={CancelReview}>Cancel</button>
                 </form>
             </div>
             <ItemDetails item={ItemToDisplay} />

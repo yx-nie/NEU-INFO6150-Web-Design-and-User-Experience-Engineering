@@ -79,8 +79,8 @@ function UserManagement() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
             <div>
                 <UserDetails user={user} userId={userId} setUser={setUser} setUserId={setUserId} />
-                <button onClick={() => onSave(user, userId)} style={{ backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Update</button>
-                <button onClick={() => onDelete(user, userId)} style={{ backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Delete</button>
+                <button onClick={() => onSave(user, userId)} style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Update</button>
+                <button onClick={() => onDelete(user, userId)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Delete</button>
             </div>
             <UserList users={users} onSelect={onSelect} />
         </div>
@@ -125,7 +125,7 @@ const UserDetails = ({ user, userId, setUser, setUserId }) => {
 const UserList = ({ users, onSelect }) => {
     return (
         <div style={{ flex: 1, padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
-            <h2>Item List</h2>
+            <h2>User List</h2>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {users.map(userObj => (
                     <div 

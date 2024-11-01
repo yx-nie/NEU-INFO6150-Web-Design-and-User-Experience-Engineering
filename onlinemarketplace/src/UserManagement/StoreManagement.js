@@ -137,7 +137,13 @@ function StoreManagement() {
             <div>
                 <ItemDetails item={item} setItem={setItem} />
                 <button
-                    style={{ backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                    style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
+                    onClick={() => onSave(item)}
+                >
+                    Update
+                </button>
+                <button
+                    style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
                     onClick={handleAddNewItem}
                 >
                     Add
@@ -147,12 +153,6 @@ function StoreManagement() {
                     onClick={handleDeleteItem}
                 >
                     Delete
-                </button>
-                <button
-                    style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
-                    onClick={() => onSave(item)}
-                >
-                    Update
                 </button>
             </div>
             <ItemList items={items} onSelect={setItem} />
