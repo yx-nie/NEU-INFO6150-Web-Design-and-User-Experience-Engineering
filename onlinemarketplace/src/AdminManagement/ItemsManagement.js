@@ -76,6 +76,11 @@ function ItemsManagement() {
     
 
     const onSave = async (item, userId) => {
+        if (item.quantity <= 0) {
+            item.status = 'Out of Stock';
+        } else {
+            item.status = 'available';
+        }
         const user = users.find((user) => user._id === userId);
         console.log(user);
         const newSelllist = user.user.selllist.map((selllistItem) => {
@@ -217,10 +222,10 @@ const ItemDetails = ({ item, setItem, setUserId }) => {
                         <label>Seller:</label>
                         <input type="text" name="seller" placeholder="Seller" value={item.seller || ''} onChange={(e)=>onInputChange(e)} />
                     </div>
-                    <div>
+                    {/* <div>
                         <label>Status:</label>
                         <input type="text" name="status" placeholder="Status" value={item.status || ''} onChange={(e)=>onInputChange(e)} />
-                    </div>
+                    </div> */}
                     <div>
                         <label>Condition:</label>
                         <input type="text" name="condition" placeholder="Condition" value={item.condition || ''} onChange={(e)=>onInputChange(e)} />

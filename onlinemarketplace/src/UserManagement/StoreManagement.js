@@ -76,8 +76,16 @@ function StoreManagement() {
     };
 
     const handleAddNewItem = async () => {
+        if (item.quantity <= 0) {
+            item.status = 'out of stock';
+        } else {
+            item.status = 'available';
+        }
         const newItem = item;
+        // generate new item id
         newItem.itemId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // make sure the review is empty
+        newItem.review = [];
         // make sure to put user id into selling items.
         newItem.sellerId = userid;
         console.log(newItem);
@@ -105,7 +113,7 @@ function StoreManagement() {
         }
     };
 
-    const handleDeleteItem = async (item) => {
+    const handleDeleteItem = async () => {
         const updatedItems = items.filter(itm => itm.itemId !== item.itemId);
         
         console.log(updatedItems);
@@ -240,10 +248,10 @@ const ItemDetails = ({ item, onSave, onDelete, onAddNew, setItem }) => {
                         <label>Seller:</label>
                         <input type="text" name="seller" placeholder="Seller" value={item.seller || ''} onChange={(e)=>onInputChange(e)} />
                     </div>
-                    <div>
+                    {/* <div>
                         <label>Status:</label>
                         <input type="text" name="status" placeholder="Status" value={item.status || ''} onChange={(e)=>onInputChange(e)} />
-                    </div>
+                    </div> */}
                     <div>
                         <label>Condition:</label>
                         <input type="text" name="condition" placeholder="Condition" value={item.condition || ''} onChange={(e)=>onInputChange(e)} />

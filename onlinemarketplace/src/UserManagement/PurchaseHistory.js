@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function PurchaseHistory() {
     const navigate = useNavigate();
-    const [item, setItem] = useState({
+    const initialState = useState({
         itemId: '',
         name: '',
         price: '',
@@ -21,6 +21,7 @@ function PurchaseHistory() {
         condition: '',
         review: []
     });
+    const [item, setItem] = useState(initialState);
     const [items, setItems] = useState([]);
     const { isAuthenticated, userid } = useSelector((state) => state.auth);
     //const hasUserid = localStorage.getItem('userid');
@@ -46,7 +47,8 @@ function PurchaseHistory() {
         setItems(response.data.data.user.buylist);
     };
 
-    const handleDeleteItem = async () => {
+    const handleDeleteItem = async (item) => {
+        
         console.log(item.itemId);
         const updatedItems = items.filter(itm => itm.itemId !== item.itemId);
         
@@ -64,6 +66,8 @@ function PurchaseHistory() {
             if (response.status !== 200) {
                 alert('Failed to delete item');
             } else {
+                alert('Item deleted successfully');
+                setItem(initialState);
                 setItems(updatedItems);
             }
         } catch (error) {
@@ -88,7 +92,7 @@ function PurchaseHistory() {
                 </button>
                 <button
                     style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}
-                    onClick={() => handleDeleteItem}
+                    onClick={() => handleDeleteItem(item)}
                 >
                     Delete
                 </button>

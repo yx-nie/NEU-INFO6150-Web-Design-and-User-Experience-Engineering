@@ -34,7 +34,7 @@ function Review() {
         reviewList = [...reviewList, review];
         item.review = reviewList;
 
-        // get the user firstly;
+        // get the seller user firstly;
         const targetUserId = item.sellerId;
         console.log(targetUserId);
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/findone/users/${targetUserId}`, {
@@ -50,7 +50,7 @@ function Review() {
             // update the item in the selllist
             for (let i = 0; i < selllist.length; i++) {
                 if (selllist[i].itemId === item.itemId) {
-                    selllist[i] = item;
+                    selllist[i].review = item.review;
                     break;
                 }
             }
@@ -111,7 +111,7 @@ function Review() {
                         <input type="text" value={review.comment} onChange={handleCommentChange} />
                     </label>
                     <button type="submit" style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} >Submit</button>
-                    <button type="button" style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} onClick={CancelReview}>Cancel</button>
+                    <button type="button" style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }} onClick={CancelReview}>Cancel</button>
                 </form>
             </div>
             <ItemDetails item={ItemToDisplay} />

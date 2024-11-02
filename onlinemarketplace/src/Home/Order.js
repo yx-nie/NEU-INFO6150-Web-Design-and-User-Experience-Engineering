@@ -36,6 +36,7 @@ function Order() {
     }
 
     const onConfirm = async () => {
+        // get the buyer's info
         const response1 = await axios.get(`${process.env.REACT_APP_API_URL}/findOne/users/${userid}`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -46,6 +47,28 @@ function Order() {
         const user = response1.data.data.user;
         user.buylist.push(item);
 
+
+        // get seller's item's quantity
+        const response3 = await axios.get(`${process.env.REACT_APP_API_URL}/findOne/users/${userId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.REACT_APP_AUTH_TOKEN}`
+            }
+        })
+        console.log('response3', response3);
+
+        const seller = response3.data.data.user;
+        console.log('seller', seller);
+        const selledItem = seller.selllist.find(itm => itm.itemId === item.itemId);
+        console.log('selledItem', selledItem);
+
+
+        if (selledItem.quantity <=0) {
+            alert('The item is out of stock');
+            return;
+        } else {
+
+        // update buyer's info
         const response = await axios.put(`${process.env.REACT_APP_API_URL}/updateone/users/${userid}`, {user: user}, {
             headers: {
                 'Content-Type': 'application/json',
@@ -56,16 +79,40 @@ function Order() {
         if (response.status !== 200) {
             alert('The order is not confirmed');
         } else {
+            //update seller's info
+            selledItem.quantity -= 1;
+            if (selledItem.quantity <= 0) {
+                selledItem.status = 'out of stock';
+            } else {
+                selledItem.status = 'available';
+            }
+
+            for (let i = 0; i < seller.selllist.length; i++) {
+                if (seller.selllist[i].itemId === item.itemId) {
+                    seller.selllist[i] = selledItem;
+                    break;
+                }
+            }
+
+            const response2 = await axios.put(`${process.env.REACT_APP_API_URL}/updateone/users/${userId}`, {user: seller}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${process.env.REACT_APP_AUTH_TOKEN}`
+                }
+            })
+
             alert('Order has been confirmed');
             navigate('/purchasehistory');
         }
     }
+    }
 
     return (
+        <div style={{ padding: '60px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '20px' }}>
             <div>
                 <h2>User Review</h2>
-                {review ? (
+                {review.length > 0 ? (
                     review.map((rev) => (
                         <div key={rev.reviewId}
                         style={{
@@ -119,6 +166,7 @@ function Order() {
                     <p>No item details available.</p>
                 )}
             </div>
+        </div>
         </div>
     );
 }       

@@ -13,6 +13,8 @@ function UserManagement() {
     });
 
     const [users, setUsers] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [displayedUsers, setDisplayedUsers] = useState([]);
 
     useEffect(() => {
         loadUsers();
@@ -33,6 +35,7 @@ function UserManagement() {
         // I do not want to display the admin user
         response.data.data = response.data.data.filter(u => u.user.role !== 'admin');
         setUsers(response.data.data);
+        setDisplayedUsers(response.data.data);
     };
 
     const onSave = async (user, userId) => {
@@ -75,14 +78,48 @@ function UserManagement() {
         }
     }
 
+    const handleSearch = (event) => {
+        event.preventDefault();
+        setSearchQuery(event.target.value);
+    }
+
+    useEffect(() => {
+        if (searchQuery === '') {
+            setDisplayedUsers(users);
+        } else {
+            const filteredUsers = users.filter((user) => user.user.username.toLowerCase().includes(searchQuery.toLowerCase()));
+            setDisplayedUsers(filteredUsers);
+        }
+
+    }, [searchQuery, users]);
+
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
+        <div style={{ padding: '60px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h1>User Management</h1>
+                <input
+                    type="text"
+                    placeholder="Search items..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    style={{
+                        padding: '10px',
+                        borderRadius: '5px',
+                        border: '1px solid #ccc',
+                        width: '300px',
+                        marginRight: '20px',
+                    }}
+                />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
             <div>
                 <UserDetails user={user} userId={userId} setUser={setUser} setUserId={setUserId} />
                 <button onClick={() => onSave(user, userId)} style={{ backgroundColor: 'orange', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Update</button>
                 <button onClick={() => onDelete(user, userId)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Delete</button>
             </div>
-            <UserList users={users} onSelect={onSelect} />
+            <UserList users={displayedUsers} onSelect={onSelect} />
+            </div>
         </div>
     );
 }
