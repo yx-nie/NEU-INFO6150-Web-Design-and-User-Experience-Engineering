@@ -36,6 +36,9 @@ export default function Navbar() {
                             {isAuthenticated && <Link  className='nav-link active' to="/purchasehistory">Manage Purchase History</Link>}
                         </li>
                         <li>
+                            {isAuthenticated && <Link  className='nav-link active' to="/sellinghistory">Manage Selling History</Link>}
+                        </li>
+                        <li>
                             {isAuthenticated && <Link  className='nav-link active' to="/storemanagement">Manage Your Store</Link>}
                         </li>
                         <li>

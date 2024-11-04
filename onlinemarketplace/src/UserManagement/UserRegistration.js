@@ -59,7 +59,8 @@ function UserRegistration() {
                     role: buttonType,
                     location: "",
                     selllist: [],
-                    buylist: []
+                    buylist: [],
+                    transactions: []
                 }
             }
 

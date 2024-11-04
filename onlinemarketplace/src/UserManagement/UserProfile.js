@@ -45,19 +45,20 @@ function UserProfile() {
             setUser({ ...user, [e.target.name]: e.target.value });
         }
 
-        let updateUser = {...user};
+        
         
         const onSubmit = async (e) => {
             e.preventDefault();
-            const response = await axios.put(`${process.env.REACT_APP_API_URL}/updateone/users/${userid}`, updateUser, {
+            let updateUser = {...user};
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/updateOne/users/${userid}`, {user: updateUser}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `${process.env.REACT_APP_AUTH_TOKEN}`
                 }
             });
 
-            if (response.status === 'success') {
-                setUser(updateUser);
+            if (response.status === 200) {
+                //setUser(updateUser);
                 alert('User updated successfully');
             } else {
                 alert('Failed to update user');

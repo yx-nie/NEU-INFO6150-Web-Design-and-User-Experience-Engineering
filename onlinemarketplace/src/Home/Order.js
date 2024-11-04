@@ -20,6 +20,23 @@ function Order() {
 
     const [review, setReview] = useState([]);
 
+    const [transaction, setTransaction] = useState({
+        transactionId: '',
+        buyerId: '',
+        buyerName: '',
+        sellerId: '',
+        sellerName: '',
+        itemId: '',
+        itemName: '',
+        quantity: '',
+        price: '',
+        category: '',
+        locationFrom: '',
+        locationTo: '',
+        transactionTime:''
+    });
+
+
     useEffect(() => {
         loadReview();
     }, []);
@@ -93,6 +110,24 @@ function Order() {
                     break;
                 }
             }
+
+            // also I want to update the sellor the selling history to include this transaction
+
+            transaction.transactionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            transaction.buyerId = userid;
+            transaction.buyerName = user.username;
+            transaction.sellerId = userId;
+            transaction.sellerName = seller.username;
+            transaction.itemId = item.itemId;
+            transaction.itemName = item.name;
+            transaction.quantity = 1;
+            transaction.price = item.price;
+            transaction.category = item.category;
+            transaction.locationFrom = seller.location;
+            transaction.locationTo = user.location;
+            transaction.transactionTime = new Date();
+
+            seller.transactions = [...seller.transactions, transaction];
 
             const response2 = await axios.put(`${process.env.REACT_APP_API_URL}/updateone/users/${userId}`, {user: seller}, {
                 headers: {
