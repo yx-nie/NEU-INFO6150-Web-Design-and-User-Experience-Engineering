@@ -82,7 +82,7 @@ function SellingHistory() {
 
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '70px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '110px' }}>
             <div style={{ flex: 1, padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
         <table className="table table-striped table-bordered">
             <thead>

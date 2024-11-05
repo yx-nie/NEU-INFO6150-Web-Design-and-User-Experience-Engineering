@@ -1,27 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, resolvePath } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function UserProfile() {
     const {isAuthenticated, userid} = useSelector(state => state.auth); 
-
-
         const [user, setUser] = useState({
-            username: '',
-            email: '',
-            password: '',
-            location: '',
-            selllist: [],
-            buylist: [],
-
+            _id: userid,
+            user: {
+                username: '',
+                email:  '',
+                password:  '',
+                role: '',
+                location: '',
+                selllist: [],
+                buylist: [],
+                transactions: []
+            }
         });
 
         useEffect(() => {
             loadUser();
         }, []);
 
-        const { username, email, password, location, selllist, buylist} = user;
+        const { username, email, password, role, location, selllist, buylist, transactions} = user;
 
         const loadUser = async () => {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/findOne/users/${userid}`, {
@@ -33,8 +35,6 @@ function UserProfile() {
 
             const data = response.data;
             if (data.status === 'success') {
-                console.log(data.data);
-                console.log('userid ', userid);
                 setUser(data.data.user);
             } else {
                 alert('Failed to fetch user');
@@ -58,7 +58,7 @@ function UserProfile() {
             });
 
             if (response.status === 200) {
-                //setUser(updateUser);
+                setUser(updateUser);
                 alert('User updated successfully');
             } else {
                 alert('Failed to update user');
@@ -68,6 +68,7 @@ function UserProfile() {
 
 
     return (
+        <div style={{ padding: '100px' }}>
         <div className='container'>
         <div className='row'>
             <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
@@ -102,6 +103,7 @@ function UserProfile() {
                 </form>
             </div>
         </div>
+    </div>
     </div>
     )
 }

@@ -69,6 +69,7 @@ function ForgettingPassword() {
 
 
     return (
+        <div style={{ padding: '100px' }}>
         <div className='container'>
         <div className='row'>
             <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
@@ -85,6 +86,7 @@ function ForgettingPassword() {
                 </form>
             </div>
         </div>
+    </div>
     </div>
     );
 }

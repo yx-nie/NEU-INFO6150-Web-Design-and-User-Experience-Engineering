@@ -76,12 +76,17 @@ function PurchaseHistory() {
     };
 
     const AddReview = async (item) => {
-        navigate('/review', { state: { item} });
+        if (item && item.itemId) {
+            navigate('/review', { state: { item} });
+        } else {
+            alert('Please select an item first');
+
+        }
     }
 
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '70px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '110px' }}>
             <div>
                 <ItemDetails item={item} setItem={setItem} />
                 <button

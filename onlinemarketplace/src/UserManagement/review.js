@@ -89,7 +89,7 @@ function Review() {
     }
 
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '110px' }}>
             <div>
                 <h2>Item Review</h2>
                 <form 

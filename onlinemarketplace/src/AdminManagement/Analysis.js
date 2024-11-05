@@ -1,28 +1,8 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Bar, Pie } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement // Needed for Pie chart
-} from 'chart.js';
+import { AgCharts } from 'ag-charts-react';
 
-// Register chart components
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement
-);
 
 function Analysis() {
     const [transactions, setTransactions] = useState([]);
@@ -78,7 +58,7 @@ function Analysis() {
     
 
     return (
-        <div>
+        <div style={{ padding: '110px' }}>
             Analysis
             {transactions.length > 0 ?
             <>  
@@ -89,18 +69,51 @@ function Analysis() {
 }
 
 const TransactionData = ({ transactions }) => {
-    const labels = transactions.map(txn => txn.itemName || 'Unknown Item');
-    const data = transactions.map(txn => (txn.price || 0) * (txn.quantity || 0));
+    const aggregatedData = transactions.reduce((acc, txn) => {
+        const itemName = txn.itemName || 'Unknown Item';
+        const totalValue = (txn.price || 0) * (txn.quantity || 0);
+
+        // If the item already exists in the accumulator, add the totalValue to the existing value
+        if (acc[itemName]) {
+            acc[itemName] += totalValue;
+        } else {
+            // If the item does not exist in the accumulator, set it with the current totalValue
+            acc[itemName] = totalValue;
+        }
+
+        return acc;
+    }, {});
+
+    const chartData = Object.entries(aggregatedData).map(([itemName, totalValue]) => ({
+        itemName,
+        totalValue
+    }));
+
+
+    const chartOptions = {
+        data: chartData,
+        series: [
+            {
+                type: 'bar',
+                xKey: 'itemName',
+                yKey: 'totalValue',
+                yName: 'Total Value',
+                label: { enabled: true }
+            }
+        ],
+        axes: [
+            { type: 'category', position: 'bottom', title: { text: 'Item Name' } },
+            { type: 'number', position: 'left', title: { text: 'Total Deal' } }
+        ],
+        legend: { enabled: false }
+    };
 
     return (
-        <div>
-            <p>not implemented yet</p>
+        <div style={{ height: '500px', width: '100%' }}>
+            <AgCharts options={chartOptions} />
         </div>
     );
-
-    
-
-    
+ 
 };
 
 

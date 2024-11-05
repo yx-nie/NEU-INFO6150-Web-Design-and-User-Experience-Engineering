@@ -140,7 +140,7 @@ function ItemsManagement() {
 
 
     return (
-        <div style={{ padding: '60px' }}>
+        <div style={{ padding: '110px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h1>Item Listings</h1>
                 <input
