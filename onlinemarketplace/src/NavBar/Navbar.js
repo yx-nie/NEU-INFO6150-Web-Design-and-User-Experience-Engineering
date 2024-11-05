@@ -48,6 +48,9 @@ export default function Navbar() {
                             {isAuthenticated && isAdmin && <Link className="nav-link active" to="/itemsmanagement">Items Management</Link>}
                         </li>
                         <li>
+                            {isAuthenticated && isAdmin && <Link className="nav-link active" to="/analysis">Analysis</Link>}
+                        </li>
+                        <li>
                             {isAuthenticated && <Link className="nav-link active" to="/userlogout">Logout</Link>}
                         </li>
                     </ul>   

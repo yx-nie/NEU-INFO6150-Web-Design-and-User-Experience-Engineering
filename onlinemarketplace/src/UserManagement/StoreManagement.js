@@ -141,7 +141,7 @@ function StoreManagement() {
 
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '70px' }}>
             <div>
                 <ItemDetails item={item} setItem={setItem} />
                 <button

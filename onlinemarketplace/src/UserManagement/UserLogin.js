@@ -51,7 +51,7 @@ function UserLogin() {
                         </div>
                         <button type="submit" className='btn btn-primary'>Login</button>
                         <Link  className='btn btn-danger' to="/">Cancel</Link>
-                        <Link  className='btn btn-danger' to="/">Forget password ?</Link>
+                        <Link  className='btn btn-danger' to="/forgetpassword">Forget password ?</Link>
                     </form>
                 </div>
             </main>

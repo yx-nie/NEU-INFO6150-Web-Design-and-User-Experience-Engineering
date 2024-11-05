@@ -14,6 +14,8 @@ import HomeItemListing from './Home/HomeItemListing';
 import Review from './UserManagement/review';
 import SellingHistory from './UserManagement/SellingHistory';
 import Order from './Home/Order';
+import ForgettingPassword from './UserManagement/ForgettingPassword';
+import Analysis from './AdminManagement/Analysis';
 import { Provider, useSelector } from 'react-redux';
 import store from './store';
 
@@ -38,6 +40,8 @@ function App() {
           <Route exact path='/review' element={<Review />} />
           <Route exact path='/' element={<HomeItemListing />} />
           <Route exact path='/sellinghistory' element={<SellingHistory />} />
+          <Route exact path='/analysis' element={<Analysis />} />
+          <Route exact path='/forgetpassword' element={<ForgettingPassword />} />
         </Routes>
         </Provider>
       </Router>
