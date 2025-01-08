@@ -54,6 +54,7 @@ function Review() {
                     break;
                 }
             }
+
             
             targetUser.selllist = selllist;
             console.log(targetUser);
